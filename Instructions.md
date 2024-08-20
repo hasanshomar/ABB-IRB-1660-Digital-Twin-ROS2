@@ -2,7 +2,6 @@
 
 For the sake of example, the workspace used in this documentation will be called `ros2_irb1660`
 
----
 1. **Create a new workspace directory:**
    - Open a terminal and run:
      ```bash
