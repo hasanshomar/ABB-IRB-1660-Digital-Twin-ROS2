@@ -147,3 +147,165 @@ URDF stands for **Unified Robot Description Format**. It is an XML format used i
 
 The URDF file is essentially a detailed blueprint of the robot, describing its physical shape, properties, and how its parts are connected. While the URDF doesn't "do" anything on its own as it's just a descriptive file, it is crucial for enabling other parts of the ROS ecosystem to interact with, simulate, and visualize the robot correctly.
 
+---
+# Creating the URDF file
+
+Let's create a new URDF file in your `urdf` folder.
+
+1. **Create the File:**
+   - Navigate to your `urdf` directory in the terminal:
+     ```bash
+     cd ~/ros2_irb1660/src/irb1660_sim/urdf
+     ```
+   - Create a new file named `irb1660_robot.urdf`:
+     ```bash
+     touch irb1660_robot.urdf
+     ```
+
+2. **Write the URDF code (See next section for detailed explanation of components of the URDF):**
+   - Open the `irb1660_robot.urdf` file with your preferred text editor (e.g., `nano`, `vim`, or a graphical editor like `gedit` or VS Code):
+     ```bash
+     gedit irb1660_robot.urdf
+     ```
+   - Copy the following code:
+     ```bash
+     <?xml version="1.0"?>
+<robot name="irb1660_robot">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual name="visual">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/base_link.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="joint_1" type="revolute">
+    <origin xyz="0 0 0.1255" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <limit effort="10.0" lower="-2.967" upper="2.967" velocity="1.7453"/>
+  </joint>
+
+  <!-- Link 1 -->
+  <link name="link_1">
+    <visual name="visual">
+      <origin xyz="0 0 -0.1255" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_1.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 2 -->
+  <joint name="joint_2" type="revolute">
+    <origin xyz="0.15 0.137 0.4865" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <limit effort="10.0" lower="-1.134" upper="1.4855" velocity="1.5707"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="link_2">
+    <visual name="visual">
+      <origin xyz="-0.15 -0.137 -0.612" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_2.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 3 -->
+  <joint name="joint_3" type="revolute">
+    <origin xyz="0.15 0.107 1.1865" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_2"/>
+    <child link="link_3"/>
+    <limit effort="10.0" lower="-3.142" upper="1.222" velocity="1.5707"/>
+  </joint>
+
+  <!-- Link 3 -->
+  <link name="link_3">
+    <visual name="visual">
+      <origin xyz="-0.3 -0.244 -1.7985" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_3.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 4 -->
+  <joint name="joint_4" type="revolute">
+    <origin xyz="0.464 0 1.1865" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <parent link="link_3"/>
+    <child link="link_4"/>
+    <limit effort="10.0" lower="-5.236" upper="5.236" velocity="2.9671"/>
+  </joint>
+
+  <!-- Link 4 -->
+  <link name="link_4">
+    <visual name="visual">
+      <origin xyz="-0.764 -0.244 -2.985" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_4.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 5 -->
+  <joint name="joint_5" type="revolute">
+    <origin xyz="0.75 0.00005 1.1865" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_4"/>
+    <child link="link_5"/>
+    <limit effort="10.0" lower="-2.094" upper="2.094" velocity="2.4435"/>
+  </joint>
+
+  <!-- Link 5 -->
+  <link name="link_5">
+    <visual name="visual">
+      <origin xyz="-1.514 -0.24405 -4.1715" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_5.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 6 -->
+  <joint name="joint_6" type="revolute">
+    <origin xyz="0.717 0.00005 1.1865" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <parent link="link_5"/>
+    <child link="link_6"/>
+    <limit effort="10.0" lower="-6.283" upper="6.283" velocity="3.3161"/>
+  </joint>
+
+  <!-- Link 6 -->
+  <link name="link_6">
+    <visual name="visual">
+      <origin xyz="-2.231 -0.24410 -5.358" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_6.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+</robot>
+```
+
+4. **Save and Close:**
+   - After pasting the content, save the file and exit the editor (in `nano`, you can save with `CTRL + O`, then exit with `CTRL + X`).
+
+### **Final URDF File Path:**
+- The final path to your new URDF file will be:
+  ```bash
+  ~/ros2_abb_ws/src/irb1660_sim/urdf/irb1660_robot.urdf
+  ```
+
+Now, you have a new, conveniently named URDF file that reflects the latest version of your robot model. You can use this file in your ROS launch files or with any other tools that require the robot's URDF description.
