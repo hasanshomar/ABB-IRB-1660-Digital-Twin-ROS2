@@ -297,15 +297,9 @@ Let's create a new URDF file in your `urdf` folder.
   </link>
 
 </robot>
-    ```
+```
 
-4. **Save and Close:**
-   - After pasting the content, save the file and exit the editor (in `nano`, you can save with `CTRL + O`, then exit with `CTRL + X`).
+4. **Save and Close**
+---
 
-### **Final URDF File Path:**
-- The final path to your new URDF file will be:
-  ```bash
-  ~/ros2_abb_ws/src/irb1660_sim/urdf/irb1660_robot.urdf
-  ```
 
-Now, you have a new, conveniently named URDF file that reflects the latest version of your robot model. You can use this file in your ROS launch files or with any other tools that require the robot's URDF description.
