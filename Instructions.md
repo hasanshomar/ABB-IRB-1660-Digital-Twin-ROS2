@@ -79,4 +79,24 @@ For the sake of example, the workspace used in this documentation will be called
      ```bash
      source install/setup.bash
      ```
-     
+
+Your current workspace structure should look something like this now:
+
+#### Workspace Structure
+- **`ros2_irb1660/`** (Root workspace directory)
+  - **`build/`**: Directory where the build artifacts are stored.
+  - **`install/`**: Directory containing the installed packages after building.
+  - **`log/`**: Directory where logs are stored.
+  - **`src/`**: Source directory for your ROS 2 packages.
+    - **`irb_1660_sim/`**: Your ROS 2 package directory.
+      - **`include/irb_1660_sim/`**: This is where header files (if any) would be placed.
+      - **`launch/`**: Directory for launch files that start the simulation or other ROS nodes.
+      - **`meshes/`**: Directory for 3D model files (likely `.stl` or `.dae`).
+      - **`urdf/`**: Directory for URDF and Xacro files that describe the robot model.
+      - **`src/`**: Directory for source files (e.g., `.cpp` files for nodes).
+      - **`package.xml`**: ROS package manifest, specifying dependencies and package metadata.
+      - **`CMakeLists.txt`**: Build configuration file for compiling the package.
+
+---
+
+
