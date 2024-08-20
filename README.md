@@ -4,8 +4,11 @@
 
 ---
 ### Prerequisites
-|Requirement Type	|Description	|Details/Version|
-|Operating System	|Supported OS	|Ubuntu 22.04.4 LTS|
-|Software|	ROS 2 Distribution|	Humble Hawksbill|
-|    | Gazebo |	Gazebo 11|
-|Dependencies|	Development Tools and Libraries|	Python 3.8, CMake, Git|
+| **Requirement Type** | **Description**                      | **Details/Version**              |
+|----------------------|--------------------------------------|----------------------------------|
+| **Operating System** | Supported OS                         | Ubuntu 22.04.4 LTS               |
+| **Software**         | ROS 2 Distribution                   | Humble Hawksbill                 |
+|                      | Gazebo                               | Gazebo 11                        |
+| **Dependencies**     | Development Tools and Libraries      | Python 3.8, CMake, Git           |
+
+---
