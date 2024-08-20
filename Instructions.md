@@ -171,7 +171,7 @@ gedit irb1660_robot.urdf
 
 ```xml
 <?xml version="1.0"?>
-<robot name="robot_manipulator">
+<robot name="irb1660_robot">
 
   <!-- Base Link -->
   <link name="base_link">
@@ -300,7 +300,117 @@ gedit irb1660_robot.urdf
 </robot>
 ```
      
-4. **Save and Close**
+3. **Save and Close**
 ---
+# Explanation of URDF File
+Let's walk through the `irb1660_robot.urdf` file step by step, explaining each part and how the information for each line was obtained.
 
+### Header
+```xml
+<?xml version="1.0"?>
+<robot name="irb1660_robot">
+```
+- **Explanation:** 
+  - `<?xml version="1.0"?>` is a standard XML declaration indicating the version of XML being used.
+  - `<robot name="irb1660_robot">` defines the root element of the URDF and assigns a name to the robot model. This name is used by tools like RViz and Gazebo to identify the robot. It’s a good practice to name it after the specific robot model, in this case, "irb1660_robot".
 
+### Base Link
+```xml
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual name="visual">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/base_link.dae"/>
+      </geometry>
+    </visual>
+  </link>
+```
+- **Explanation:** 
+  - `<link name="base_link">` defines a rigid body in the robot, named "base_link". This is the base of the robot from which all other parts are connected.
+  - `<visual name="visual">` specifies the visual representation of this link. It includes:
+    - `<origin xyz="0 0 0" rpy="0 0 0" />`: Defines the position (`xyz`) and orientation (`rpy` – roll, pitch, yaw) of the visual geometry relative to the link’s origin.
+    - `<geometry>`: Describes the shape of the link. Here, it references a 3D mesh file (`base_link.dae`) located in the `meshes` directory of the package.
+  - **How Information Was Obtained:** 
+    - The mesh file is typically created using CAD software and exported in a format like `.dae` (Collada). The origin and orientation are set to zero because the mesh file is usually aligned with the base link’s frame by default.
+
+### Joint 1 and Link 1
+```xml
+  <!-- Joint 1 -->
+  <joint name="joint_1" type="revolute">
+    <origin xyz="0 0 0.1255" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <limit effort="10.0" lower="-2.967" upper="2.967" velocity="1.7453"/>
+  </joint>
+
+  <!-- Link 1 -->
+  <link name="link_1">
+    <visual name="visual">
+      <origin xyz="0 0 -0.1255" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_1.dae"/>
+      </geometry>
+    </visual>
+  </link>
+```
+- **Explanation:** 
+  - `<joint name="joint_1" type="revolute">` defines a revolute joint (a hinge allowing rotation) named "joint_1".
+    - `<origin xyz="0 0 0.1255" rpy="0 0 0"/>`: Specifies the position and orientation of the joint relative to the parent link’s frame. Here, the joint is slightly offset in the z-axis.
+    - `<axis xyz="0 0 1"/>`: Indicates that the joint rotates around the z-axis.
+    - `<parent link="base_link"/>` and `<child link="link_1"/>`: Define the parent and child links connected by this joint.
+    - `<limit>`: Specifies constraints for the joint:
+      - `effort="10.0"`: Maximum torque or force the joint can apply.
+      - `lower` and `upper`: Angular limits for the joint in radians.
+      - `velocity`: Maximum speed of the joint.
+  - `<link name="link_1">`: Defines the next link connected to "base_link" through "joint_1".
+    - The `<visual>` element describes its visual appearance, similar to "base_link".
+  - **How Information Was Obtained:**
+    - The joint’s position and orientation (`origin`) are determined based on the robot’s mechanical design. Limits like `effort`, `lower`, `upper`, and `velocity` are derived from the robot’s physical specifications, typically provided by the manufacturer.
+
+### Subsequent Joints and Links
+- The file continues in a similar pattern, defining joints and links for the rest of the robot's arm.
+
+  For example:
+```xml
+  <!-- Joint 2 -->
+  <joint name="joint_2" type="revolute">
+    <origin xyz="0.15 0.137 0.4865" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <limit effort="10.0" lower="-1.134" upper="1.4855" velocity="1.5707"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="link_2">
+    <visual name="visual">
+      <origin xyz="-0.15 -0.137 -0.612" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://manipulator/meshes/link_2.dae"/>
+      </geometry>
+    </visual>
+  </link>
+```
+- **Explanation:** 
+  - The process for defining each joint and link is similar to the first one:
+    - `origin`, `axis`, `parent`, `child`, `limit` for joints.
+    - `origin`, `geometry`, and `mesh` for links.
+  - **How Information Was Obtained:** 
+    - Again, the positions, orientations, and limits come from the robot’s mechanical design and specifications.
+
+### Closing Tags
+```xml
+</robot>
+```
+- **Explanation:** 
+  - This closing tag ends the robot description in the URDF file.
+
+### **Summary:**
+- The URDF file is structured to describe each part of the robot’s kinematic chain, starting from the base link and moving out through each joint and link.
+- **Information Sources:**
+  - The data for joint limits, axes, and origins typically comes from the robot’s technical documentation or CAD models.
+  - Mesh files are created using 3D modeling software and linked in the URDF for visualization.
+
+This URDF file now serves as a complete description of your IRB 1660 robot, providing all the necessary details for tools like Gazebo and RViz to simulate and visualize the robot accurately. Let me know if you have any more questions or if you'd like to move on to another part of your project!
