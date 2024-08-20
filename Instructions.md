@@ -5,10 +5,10 @@ For the sake of example, the workspace used in this documentation will be called
 1. **Create a new workspace directory:**
    - Open a terminal and run:
      ```bash
-     mkdir -p ~/ros2_irb1660/src
-     cd ~/ros2_irb1660
+     mkdir -p ~/ros2_ws/src
+     cd ~/ros2_ws
      ```
-   - This creates a new ROS 2 workspace directory named `ros2_irb1660` with a `src` subdirectory where your packages will be placed.
+   - This creates a new ROS 2 workspace directory named `ros2_ws` with a `src` subdirectory where your packages will be placed.
 
 2. **Initialize the workspace:**
    - Run the following command to initialize your workspace:
@@ -24,7 +24,7 @@ For the sake of example, the workspace used in this documentation will be called
      ```
      To make this automatic for every new terminal session, add the source command to your `.bashrc` file:
      ```bash
-     echo "source ~/ros2_irb1660/install/setup.bash" >> ~/.bashrc
+     echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
      source ~/.bashrc
      ```
 
@@ -37,30 +37,30 @@ For the sake of example, the workspace used in this documentation will be called
      ```
    - Create a new package with the necessary dependencies:
      ```bash
-     ros2 pkg create --build-type ament_cmake irb1660_sim --dependencies rclcpp std_msgs sensor_msgs urdf xacro gazebo_ros control_msgs trajectory_msgs
+     ros2 pkg create --build-type ament_cmake irb1660 --dependencies rclcpp std_msgs sensor_msgs urdf xacro gazebo_ros control_msgs trajectory_msgs
      ```
-   - This creates a new package named `irb16600_sim` with dependencies like `rclcpp`, `urdf`, `xacro`, and `gazebo_ros`, which are essential for your simulation.
+   - This creates a new package named `irb16600` with dependencies like `rclcpp`, `urdf`, `xacro`, and `gazebo_ros`, which are essential for your simulation.
 
 # Create the necessary directories
 
 1. **URDF and Xacro files:**
    - Create a `urdf` directory inside your package:
      ```bash
-     mkdir -p ~/ros2_irb1660/src/irb1660_sim/urdf
+     mkdir -p ~/ros2_ws/src/irb1660/urdf
      ```
    - This is where we'll add the URDF files later.
 
 2. **Launch files:**
    - Create a `launch` directory inside your package:
      ```bash
-     mkdir -p ~/ros2_irb1660/src/irb1660_sim/launch
+     mkdir -p ~/ros2_ws/src/irb1660/launch
      ```
    - This is where we'll add the launch files later.
 
 3. **Meshes and Models:**
    - Create a `meshes` directory inside your package:
      ```bash
-     mkdir -p ~/ros2_irb1660/src/irb1660_sim/meshes
+     mkdir -p ~/ros2_ws/src/irb1660/meshes
      ```
    - This is where we'll save the necessary 3D models for the robot.
 
@@ -69,7 +69,7 @@ For the sake of example, the workspace used in this documentation will be called
 1. **Build the workspace:**
    - Go back to the root of the workspace and build it:
      ```bash
-     cd ~/ros2_irb1660
+     cd ~/ros2_ws
      colcon build
      ```
      
@@ -82,13 +82,13 @@ For the sake of example, the workspace used in this documentation will be called
 Your current workspace structure should look something like this now:
 
 #### Workspace Structure
-- **`ros2_irb1660/`** (Root workspace directory)
+- **`ros2_ws/`** (Root workspace directory)
   - **`build/`**: Directory where the build artifacts are stored.
   - **`install/`**: Directory containing the installed packages after building.
   - **`log/`**: Directory where logs are stored.
   - **`src/`**: Source directory for your ROS 2 packages.
-    - **`irb_1660_sim/`**: Your ROS 2 package directory.
-      - **`include/irb_1660_sim/`**: This is where header files (if any) would be placed.
+    - **`irb1660/`**: Your ROS 2 package directory.
+      - **`include/irb1660/`**: This is where header files (if any) would be placed.
       - **`launch/`**: Directory for launch files that start the simulation or other ROS nodes.
       - **`meshes/`**: Directory for 3D model files (likely `.stl` or `.dae`).
       - **`urdf/`**: Directory for URDF and Xacro files that describe the robot model.
@@ -155,7 +155,7 @@ Let's create a new URDF file in your `urdf` folder.
 1. **Create the File:**
    - Navigate to your `urdf` directory in the terminal:
      ```bash
-     cd ~/ros2_irb1660/src/irb1660_sim/urdf
+     cd ~/ros2_ws/src/irb1660/urdf
      ```
    - Create a new file named `irb1660_robot.urdf`:
      ```bash
@@ -178,7 +178,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/base_link.dae"/>
+        <mesh filename="package://irb1660/meshes/base_link.dae"/>
       </geometry>
     </visual>
   </link>
@@ -197,7 +197,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="0 0 -0.1255" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_1.dae"/>
+        <mesh filename="package://irb1660/meshes/link_1.dae"/>
       </geometry>
     </visual>
   </link>
@@ -216,7 +216,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="-0.15 -0.137 -0.612" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_2.dae"/>
+        <mesh filename="package://irb1660/meshes/link_2.dae"/>
       </geometry>
     </visual>
   </link>
@@ -235,7 +235,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="-0.3 -0.244 -1.7985" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_3.dae"/>
+        <mesh filename="package://irb1660/meshes/link_3.dae"/>
       </geometry>
     </visual>
   </link>
@@ -254,7 +254,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="-0.764 -0.244 -2.985" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_4.dae"/>
+        <mesh filename="package://irb1660/meshes/link_4.dae"/>
       </geometry>
     </visual>
   </link>
@@ -273,7 +273,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="-1.514 -0.24405 -4.1715" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_5.dae"/>
+        <mesh filename="package://irb1660/meshes/link_5.dae"/>
       </geometry>
     </visual>
   </link>
@@ -292,7 +292,7 @@ gedit irb1660_robot.urdf
     <visual name="visual">
       <origin xyz="-2.231 -0.24410 -5.358" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_6.dae"/>
+        <mesh filename="package://irb1660/meshes/link_6.dae"/>
       </geometry>
     </visual>
   </link>
@@ -321,7 +321,7 @@ Let's walk through the `irb1660_robot.urdf` file step by step, explaining each p
     <visual name="visual">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/base_link.dae"/>
+        <mesh filename="package://irb1660/meshes/base_link.dae"/>
       </geometry>
     </visual>
   </link>
@@ -350,7 +350,7 @@ Let's walk through the `irb1660_robot.urdf` file step by step, explaining each p
     <visual name="visual">
       <origin xyz="0 0 -0.1255" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_1.dae"/>
+        <mesh filename="package://irb1660/meshes/link_1.dae"/>
       </geometry>
     </visual>
   </link>
@@ -388,7 +388,7 @@ Let's walk through the `irb1660_robot.urdf` file step by step, explaining each p
     <visual name="visual">
       <origin xyz="-0.15 -0.137 -0.612" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://manipulator/meshes/link_2.dae"/>
+        <mesh filename="package://irb1660/meshes/link_2.dae"/>
       </geometry>
     </visual>
   </link>
