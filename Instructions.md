@@ -168,9 +168,10 @@ Let's create a new URDF file in your `urdf` folder.
      gedit irb1660_robot.urdf
      ```
    - Copy the following code:
-    ```bash
+
+   ```xml
 <?xml version="1.0"?>
-<robot name="irb1660_robot">
+<robot name="robot_manipulator">
 
   <!-- Base Link -->
   <link name="base_link">
@@ -297,8 +298,10 @@ Let's create a new URDF file in your `urdf` folder.
   </link>
 
 </robot>
-```
+   ```
 
+You can now copy and paste this content into your `irb1660_robot.urdf` file using `gedit`. Let me know when you’re ready to move on!
+     
 4. **Save and Close**
 ---
 
