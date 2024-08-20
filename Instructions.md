@@ -169,7 +169,7 @@ Let's create a new URDF file in your `urdf` folder.
      ```
    - Copy the following code:
      ```bash
-     <?xml version="1.0"?>
+<?xml version="1.0"?>
 <robot name="irb1660_robot">
 
   <!-- Base Link -->
@@ -297,7 +297,7 @@ Let's create a new URDF file in your `urdf` folder.
   </link>
 
 </robot>
-```
+      ```
 
 4. **Save and Close:**
    - After pasting the content, save the file and exit the editor (in `nano`, you can save with `CTRL + O`, then exit with `CTRL + X`).
