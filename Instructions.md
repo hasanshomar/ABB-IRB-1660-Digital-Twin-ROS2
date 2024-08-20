@@ -24,7 +24,7 @@ For the sake of example, the workspace used in this documentation will be called
      ```
      To make this automatic for every new terminal session, add the source command to your `.bashrc` file:
      ```bash
-     echo "source ~/ros2_ws_test/install/setup.bash" >> ~/.bashrc
+     echo "source ~/ros2_irb1660/install/setup.bash" >> ~/.bashrc
      source ~/.bashrc
      ```
 
