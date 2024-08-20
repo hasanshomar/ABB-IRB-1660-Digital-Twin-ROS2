@@ -1,4 +1,4 @@
-# 1. Setting Up a New ROS2 Workspace
+# Setting Up a New ROS2 Workspace
 
 For the sake of example, the workspace used in this documentation will be called `ros2_irb1660`
 
@@ -28,7 +28,7 @@ For the sake of example, the workspace used in this documentation will be called
      source ~/.bashrc
      ```
 
-# 2. Setting Up the ROS Package
+# Setting Up the ROS Package
 
 1. **Create a new ROS 2 package:**
    - Navigate to the `src` directory:
@@ -41,7 +41,7 @@ For the sake of example, the workspace used in this documentation will be called
      ```
    - This creates a new package named `irb16600_sim` with dependencies like `rclcpp`, `urdf`, `xacro`, and `gazebo_ros`, which are essential for your simulation.
 
-# 3. Create the necessary directories
+# Create the necessary directories
 
 1. **URDF and Xacro files:**
    - Create a `urdf` directory inside your package:
@@ -64,7 +64,7 @@ For the sake of example, the workspace used in this documentation will be called
      ```
    - This is where we'll save the necessary 3D models for the robot.
 
-# 4. Build and Source the Workspace
+# Build and Source the Workspace
 
 1. **Build the workspace:**
    - Go back to the root of the workspace and build it:
@@ -412,5 +412,6 @@ Let's walk through the `irb1660_robot.urdf` file step by step, explaining each p
 - **Information Sources:**
   - The data for joint limits, axes, and origins typically comes from the robot’s technical documentation or CAD models.
   - Mesh files are created using 3D modeling software and linked in the URDF for visualization.
+---
 
-This URDF file now serves as a complete description of your IRB 1660 robot, providing all the necessary details for tools like Gazebo and RViz to simulate and visualize the robot accurately. Let me know if you have any more questions or if you'd like to move on to another part of your project!
+
