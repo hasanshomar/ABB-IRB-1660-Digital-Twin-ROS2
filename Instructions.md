@@ -164,12 +164,12 @@ Let's create a new URDF file in your `urdf` folder.
 
 2. **Write the URDF code (See next section for detailed explanation of components of the URDF):**
    - Open the `irb1660_robot.urdf` file with your preferred text editor (e.g., `nano`, `vim`, or a graphical editor like `gedit` or VS Code):
-     ```bash
-     gedit irb1660_robot.urdf
-     ```
-   - Copy the following code:
+```bash
+gedit irb1660_robot.urdf
+```
+- Copy the following code:
 
-   ```xml
+```xml
 <?xml version="1.0"?>
 <robot name="robot_manipulator">
 
@@ -298,9 +298,7 @@ Let's create a new URDF file in your `urdf` folder.
   </link>
 
 </robot>
-   ```
-
-You can now copy and paste this content into your `irb1660_robot.urdf` file using `gedit`. Let me know when you’re ready to move on!
+```
      
 4. **Save and Close**
 ---
